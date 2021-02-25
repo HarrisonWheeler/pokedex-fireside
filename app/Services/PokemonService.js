@@ -1,4 +1,5 @@
 import { ProxyState } from "../AppState.js";
+import Pokemon from "../Models/Pokemon.js";
 import { api } from "./AxiosService.js"
 
 
@@ -12,7 +13,6 @@ class PokemonService{
     try {
       const res = await api.get("")
       ProxyState.wildPokemon = res.data.results
-      console.log(ProxyState.wildPokemon);
     } catch (error) { 
       console.error(error);
     }
@@ -21,7 +21,7 @@ class PokemonService{
   async setActivePokemon(name){
     try {
       const res = await api.get(name)
-      ProxyState.activePokemon = res.data
+      ProxyState.activePokemon = new Pokemon(res.data)
       console.log(ProxyState.activePokemon);
     } catch (error) {
       console.error(error);

@@ -4,11 +4,11 @@ export default class Pokemon{
 
   constructor(data){
     this.name = data.name
-    this.img = data.sprites.front_shiny
+    this.img = data.img || data.sprites.front_shiny
     this.description = data.description || "Unknown"
     this.weight = data.weight
     this.height = data.height
-    this.type = data.types[0].type.name //this may cause issues with other data being formatted differently
+    this.type = data.types[0] ? data.types[0].type.name : data.type
     this.user = "harrison"
   }
 
@@ -24,8 +24,11 @@ export default class Pokemon{
            <p class="card-text">Height: ${this.height}</p>
            <p class="card-text">Type(s): ${this.type}</p>
         </div>
+        <button class="btn btn-success" onclick="app.caughtPokemonController.catchPokemon()">Catch Pokemon</button>
      </div>
     `
   }
+
+
 
 }
