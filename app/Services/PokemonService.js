@@ -21,6 +21,7 @@ class PokemonService{
   async setActivePokemon(name, isCaught){
     try {
       const res = await api.get(name)
+      debugger
       ProxyState.activePokemon = new Pokemon(res.data, isCaught)
       console.log(ProxyState.activePokemon);
     } catch (error) {

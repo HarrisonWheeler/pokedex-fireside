@@ -8,7 +8,7 @@ export default class Pokemon{
     this.description = data.description || "Unknown"
     this.weight = data.weight
     this.height = data.height
-    this.types = data.type
+    this.types = data.types
     this.user = "harrison"
     this.isCaught = isCaught
     this._id = data._id
@@ -24,7 +24,7 @@ export default class Pokemon{
            <p class="card-text">${this.description}</p>
            <p class="card-text">Weight: ${this.weight}</p>
            <p class="card-text">Height: ${this.height}</p>
-           <p class="card-text">Type(s): ${this.Type}</p>
+           <p class="card-text">Type(s): ${this.GetTypes}</p>
         </div>
         ${this.Buttons}
      </div>
@@ -43,9 +43,10 @@ export default class Pokemon{
     }
   }
 
-  get Types(){
+  get GetTypes(){
     let template = ''
-    this.types.forEach(t => template += t.type.name)
+    this.types.forEach(t => template += t.type.name + ' ')
+    return template
   }
 
 
