@@ -46,6 +46,11 @@
   height: 90vh;
 }
 
+.on-hover{
+  cursor: pointer;
+}
+
+
 html {
   font-family: sans-serif;
   line-height: 1.15;

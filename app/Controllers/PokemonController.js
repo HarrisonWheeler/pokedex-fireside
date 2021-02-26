@@ -5,7 +5,7 @@ import { pokemonService } from "../Services/PokemonService.js"
 function drawWildPokemon(){
   let wildPokemon = ProxyState.wildPokemon
   let template = ""
-  wildPokemon.forEach(p => template += `<li onclick="app.pokemonController.setActivePokemon('${p.name}')">${p.name}</li>`)
+  wildPokemon.forEach(p => template += `<li class="on-hover" onclick="app.pokemonController.setActivePokemon('${p.name}')">${p.name}</li>`)
   document.getElementById('wild-pokemon').innerHTML = template
 }
 
@@ -23,8 +23,8 @@ constructor(){
   ProxyState.on("activePokemon", drawActivePokemon)
 }
 
-setActivePokemon(name){
-  pokemonService.setActivePokemon(name)
+setActivePokemon(name, isCaught){
+  pokemonService.setActivePokemon(name, isCaught)
 }
 
 catchPokemon(){

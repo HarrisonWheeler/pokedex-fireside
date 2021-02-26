@@ -4,7 +4,7 @@ import { caughtPokemonService } from "../Services/CaughtPokemonService.js"
 function drawCaughtPokemon(){
   let caughtPokemon = ProxyState.myPokemon
   let template = ''
-  caughtPokemon.forEach(c => template += `<li onclick="app.pokemonController.setActivePokemon('${c.name}')">${c.name}</li>` )
+  caughtPokemon.forEach(c => template += `<li class="on-hover" onclick="app.caughtPokemonController.setActivePokemon('${c._id}', ${c.isCaught})">${c.name}</li>` )
   document.getElementById('caught-pokemon').innerHTML = template
 }
 
@@ -15,6 +15,14 @@ export default class CaughtPokemonController {
 
   catchPokemon(){
     caughtPokemonService.catchPokemon()
+  }
+
+  releasePokemon(){
+    caughtPokemonService.releasePokemon()
+  }
+
+  setActivePokemon(id, isCaught){
+    caughtPokemonService.setActivePokemon(id, isCaught)
   }
 
 

@@ -2,14 +2,16 @@
 
 export default class Pokemon{
 
-  constructor(data){
+  constructor(data, isCaught = false){
     this.name = data.name
     this.img = data.img || data.sprites.front_shiny
     this.description = data.description || "Unknown"
     this.weight = data.weight
     this.height = data.height
-    this.type = data.types[0] ? data.types[0].type.name : data.type
+    this.types = data.type
     this.user = "harrison"
+    this.isCaught = isCaught
+    this._id = data._id
   }
 
 
@@ -22,13 +24,29 @@ export default class Pokemon{
            <p class="card-text">${this.description}</p>
            <p class="card-text">Weight: ${this.weight}</p>
            <p class="card-text">Height: ${this.height}</p>
-           <p class="card-text">Type(s): ${this.type}</p>
+           <p class="card-text">Type(s): ${this.Type}</p>
         </div>
-        <button class="btn btn-success" onclick="app.caughtPokemonController.catchPokemon()">Catch Pokemon</button>
+        ${this.Buttons}
      </div>
     `
   }
 
+  get Buttons(){
+    if(this.isCaught){
+      return /*html*/ `
+      <button class="btn btn-danger" onclick="app.caughtPokemonController.releasePokemon()">Release Pokemon</button>
+      `
+    } else {
+      return /*html*/ `
+      <button class="btn btn-success" onclick="app.caughtPokemonController.catchPokemon()">Catch Pokemon</button>
+      `
+    }
+  }
+
+  get Types(){
+    let template = ''
+    this.types.forEach(t => template += t.type.name)
+  }
 
 
 }
